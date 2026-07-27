@@ -167,7 +167,8 @@ begin
   ExePath := ExpandConstant('{app}\EXE\Freelancer.exe');
   OptListPath := ExpandConstant('{app}\DATA\INTERFACE\optlist.ini');
 
-  // The hex edits below must succeed, otherwise a crash will occur when adjusting the added sliders
+  // The hex edits below must succeed, otherwise a crash will occur when adjusting the added sliders.
+  // No longer crashes as of 23/07/2026 thanks to FL#, but the if-statements are still relevant.
   if WriteHexToFile(ExePath, $0B1503, '83') then // Interface volume can be controlled independently
     FileReplaceString(OptListPath, ';option = 1411, 2454, 50, true, false', 'option = 1411, 2454, 50, true, false'); // Add interface volume slider
 

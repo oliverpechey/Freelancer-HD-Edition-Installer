@@ -495,6 +495,7 @@ var
   deviceString: AnsiString;
 begin
   try
+    // TODO: Consider returning AMD in GetGpuManufacturer if IsWine as the new dgVoodoo version doesn't appear to work on Wine anyway.
     if IsWine then
       RaiseException('Wine just returns "Wine Adapter", so don''t bother');
 
