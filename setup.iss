@@ -156,8 +156,9 @@ begin
         // Unzip
         UpdateProgress(50);
         WizardForm.StatusLabel.Caption := 'Unpacking {#MyAppName} files...';
-        ShellExecuteAsync(ExpandConstant('{tmp}\7za.exe'),
-          Format('x -y -aoa "%s" -o"%s"', [ExpandConstant('{tmp}\{#MyZipName}'), EscapeCmdPath(ExpandConstant('{app}'))]));
+        if not ShellExecuteAsync(ExpandConstant('{tmp}\7za.exe'),
+          Format('x -y -aoa "%s" -o"%s"', [ExpandConstant('{tmp}\{#MyZipName}'), EscapeCmdPath(ExpandConstant('{app}'))])) then
+          RaiseException('Failed to unpack the mod files. Installation aborted.');
         // -aoa Overwrite All existing files without prompt
         // -o Set output directory
         // -y Assume "Yes" on all Queries

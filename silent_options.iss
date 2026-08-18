@@ -60,6 +60,7 @@ var
   DefaultReflections, SelectedReflections: Integer;
   DefaultJumpTunnel, SelectedJumpTunnel: Integer;
   SmallTextParam: Integer;
+  OptionParam: Integer;
 begin
   // Installation type
   if CmdLineParamExists('/NoOptions') then
@@ -69,7 +70,9 @@ begin
   DataDirPage.Values[0] := GetParamStr('VanillaFlDir', DataDirPage.Values[0]);
 
   // Single Player ID Code
-  CallSign.SelectedValueIndex := GetParamInt('CallSign', CallSign.SelectedValueIndex);
+  OptionParam := GetParamInt('CallSign', CallSign.SelectedValueIndex);
+  if (OptionParam >= 0) and (OptionParam < CallSign.CheckListBox.Items.Count) then
+    CallSign.SelectedValueIndex := OptionParam;
 
   // More NPC voices
   PitchVariations.Checked := GetParamInt('PitchVariations', Integer(PitchVariations.Checked)) = 1;
@@ -85,15 +88,21 @@ begin
   RussianFonts.Checked := GetParamInt('RussianFonts', Integer(RussianFonts.Checked)) = 1;
 
   // Single Player options
-  StoryMode.ItemIndex := GetParamInt('StoryMode', Integer(StoryMode.ItemIndex));
+  OptionParam := GetParamInt('StoryMode', Integer(StoryMode.ItemIndex));
+  if (OptionParam >= 0) and (OptionParam < StoryMode.Items.Count) then
+    StoryMode.ItemIndex := OptionParam;
   LevelRequirements.Checked := GetParamInt('LevelRequirements', Integer(LevelRequirements.Checked)) = 1;
   NewSaveFolder.Checked := GetParamInt('NewSaveFolder', Integer(NewSaveFolder.Checked)) = 1;
 
   // Startup Screen Resolution
-  StartupRes.SelectedValueIndex := GetParamInt('StartupRes', StartupRes.SelectedValueIndex);
+  OptionParam := GetParamInt('StartupRes', StartupRes.SelectedValueIndex);
+  if (OptionParam >= 0) and (OptionParam < StartupRes.CheckListBox.Items.Count) then
+    StartupRes.SelectedValueIndex := OptionParam;
 
   // Freelancer Logo Resolution
-  LogoRes.SelectedValueIndex := GetParamInt('LogoRes', LogoRes.SelectedValueIndex);
+  OptionParam := GetParamInt('LogoRes', LogoRes.SelectedValueIndex);
+  if (OptionParam >= 0) and (OptionParam < LogoRes.CheckListBox.Items.Count) then
+    LogoRes.SelectedValueIndex := OptionParam;
 
   // Small text on larger resolutions
   SmallTextParam := GetParamInt('SmallText', SmallText.SelectedValueIndex);

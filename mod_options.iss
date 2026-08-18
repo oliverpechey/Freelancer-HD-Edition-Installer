@@ -349,7 +349,8 @@ begin
       OldFile := 'startupscreen_1280_3840x2160.tga';
 
     // Actually rename the file
-    RenameFileSafe(FolderPath + OldFile, NewFile);
+    if OldFile <> '' then
+      RenameFileSafe(FolderPath + OldFile, NewFile)
     end
 end;
 
@@ -371,9 +372,9 @@ begin
       OldFile := 'front_freelancerlogo_960x720.tga'
     else if LogoRes.Values[3] then // 720p 16:9
       OldFile := 'front_freelancerlogo_1280x720.tga'
-    else if LogoRes.Values[4] then // 1440p 4:3
+    else if LogoRes.Values[4] then // 1080p 4:3
       OldFile := 'front_freelancerlogo_1440x1080.tga'
-    else if LogoRes.Values[5] then // 1440p 16:9
+    else if LogoRes.Values[5] then // 1080p 16:9
       OldFile := 'front_freelancerlogo_1920x1080.tga'
     else if LogoRes.Values[6] then // 1440p 4:3
       OldFile := 'front_freelancerlogo_1920x1440.tga'
@@ -385,7 +386,8 @@ begin
       OldFile := 'front_freelancerlogo_3840x2160.tga';
 
     // Actually rename the file
-    RenameFileSafe(FolderPath + OldFile, NewFile);
+    if OldFile <> '' then
+      RenameFileSafe(FolderPath + OldFile, NewFile)
   end
 end;
 

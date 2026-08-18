@@ -97,7 +97,9 @@ begin
       Result := False;
 
     CloseHandle(ExecInfo.hProcess);
-  end;
+  end
+  else
+    Result := False;
 end;
 
 // Used to copy the vanilla install to {app}, also the extracted .zip file back to {app}
@@ -284,6 +286,8 @@ begin
   Result := Format('%.*x', [Digits, Value])
 end;
 
+// TODO: this function actually checks for non-ANSI characters.
+// Needs to be checked if FL runs fine from a path with characters that are ANSI and non-ASCII.
 function StrContainsNonAsciiChars(const str: string): Boolean;
 begin
   Result := Pos('?', string(AnsiString(str))) > 0;
