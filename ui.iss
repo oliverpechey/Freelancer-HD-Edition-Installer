@@ -1405,7 +1405,7 @@ begin
   descBestOptions.Top := descSinglePlayer.Top + ScaleY(75);
   descBestOptions.Width := PageMiscOptions.SurfaceWidth;
   descBestOptions.Caption := 'Automatically applies the highest video options available in Freelancer. Additionally, it''ll select your monitor''s native resolution ('
-    + IntToStr(DesktopRes.Width) + 'x' + IntToStr(DesktopRes.Height) + '). Freelancer usually doesn''t do any of this by default.';
+    + IntToStr(DesktopRes.Width) + 'x' + IntToStr(DesktopRes.Height) + ').'; // Previously FL didn't do this by default, but now it does thanks to the seminal FLSharp plugin.
   
   BestOptions := TCheckBox.Create(PageMiscOptions);
   BestOptions.Parent := PageMiscOptions.Surface;
