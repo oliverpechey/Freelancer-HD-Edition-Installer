@@ -252,9 +252,10 @@ end;
 procedure EnableOpenSP(FileName: string);
 var
   NewPlayerPath: string;
-  Mission13Path: string;
+  Mission12FilePath, Mission13Path: string;
 begin
   NewPlayerPath := ExpandConstant('{app}\EXE\newplayer.fl')
+  Mission12FilePath := ExpandConstant('{app}\DATA\MISSIONS\M12\m12.ini')
   Mission13Path := ExpandConstant('{app}\DATA\MISSIONS\M13\')
 
   // Ensure the mission 13 script is used when starting a new game
@@ -265,6 +266,15 @@ begin
 
   // Rename new open sp file
   RenameFileSafe(Mission13Path + 'm13_opensp_' + FileName + '.ini', Mission13Path + 'm13.ini')
+
+  // Add warning at the end of M12 so the player knows that M13 cannot be played in combination with OSP
+  FileReplaceString(Mission12FilePath,  '[;Trigger]' + #13#10
+                                        'nickname = m13_osp_warning' + #13#10,
+
+                                        '[Trigger]' + #13#10
+                                        'nickname = m13_osp_warning' + #13#10);
+
+  FileReplaceString(Mission12FilePath, ';Act_ActTrig = m13_osp_warning', 'Act_ActTrig = m13_osp_warning');
 end;
 
 procedure Process_SinglePlayerMode();
